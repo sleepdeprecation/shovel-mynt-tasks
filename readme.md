@@ -6,6 +6,7 @@ This is a collection of mynt shovel tasks used modify and update [http://dkuntz2
 
 - [Shovel](https://github.com/seomoz/shovel)
 - [mynt](https://github.com/Anomareh/mynt)
+- [lesscss-python](https://github.com/metalshark/lesscss-python)
 
 ## Installation
 
