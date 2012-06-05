@@ -1,8 +1,8 @@
 from shovel import task
 from subprocess import call
-from lessc import compile
+#from lessc import compile
 
-import os
+import os, glob, shutil
 
 @task
 def update():
@@ -14,7 +14,7 @@ def update():
 	'''
 
 	# compile less
-	compile("style.less", path="./source/_assets/css")
+	#compile("style.less", path="./source/_assets/css")
 
 	# add source git...
 	os.chdir("source")
@@ -23,11 +23,18 @@ def update():
 	call(["git", "push"])
 
 	# add gen git
-	os.chdir("../")
-	call(["cp", "generated/*", "git", "-r"])
-	os.chdir("git")
+	os.chdir("../generated")
+	recCopy()
+
+	os.chdir("../git")
 	call(["git", "add", "."])
 	call(["git", "commit", "-m", "'update script'"])
 	call(["git", "push"])
 
-	
+def recCopy(path='./'):
+	for i in glob.iglob(path + "*.*"):
+		shutil.copy(i, 'git/' + path)
+
+	for i in glob.iglob(path + "/*/"):
+		recCopy(path)
+
