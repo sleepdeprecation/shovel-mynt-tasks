@@ -142,9 +142,15 @@ social:
 
 archive_layout: archive.html
 archives_url: /archives/
+
 jinja:
     extensions:
         - jinja2.ext.loopcontrols
+
+misaka:
+    render_flags:
+        hard_wrap: false
+
 tag_layout: tag.html
 tags_url: /tags/
 '''
