@@ -21,8 +21,11 @@ def update():
 	call(["git", "commit", "-m", "'update script'"])
 	call(["git", "push"])
 
-	# add gen git
+	# generate
 	os.chdir("../")
+	call(["mynt", "gen", "-f", "source", "generated"])
+
+	# add gen git
 	cp = subprocess.Popen("cp generated/* git/ -r", shell=True)
 	result, err = cp.communicate()
 	print "copying error" if err else "copying fine"
