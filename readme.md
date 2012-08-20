@@ -6,12 +6,9 @@ another one of my projects,
 [By The Bay](https://github.com/dkuntz2/bythebay).
 
 ## Requrements
-Right now, you don't really need lesscss-python, that functionality is
-currently not working. Really, all you need is Shovel and mynt.
 
 - [Shovel](https://github.com/seomoz/shovel)
 - [mynt](https://github.com/Anomareh/mynt)
-- [lesscss-python](https://github.com/metalshark/lesscss-python)
 
 ## Installation
 
@@ -43,7 +40,7 @@ That said, you have to manually mess with the directories to get started
 with the git tasks.
 
 Basically, just head into `./source`, run `git init`, add a remote (`git
-remote add [url to remote repository]`.
+remote add [url to remote repository] origin`.
 
 After you've got the source directory setup you'll need to create the git
 directory (as of when this is written, mynt deletes the genereated
@@ -66,6 +63,24 @@ Build your basic mynt site. Runs `init` for your too.
 Prompts you for the basic information about your site and places them inside your `./source/config.yml` file.
 
 Does some *basic* processing on the `domain` and `base_url` variables.
+
+### draft "[name of post]"
+
+Create a new draft with the name [name of post].
+
+The draft will be located in `./source/_draft/[name of post].md`. You can
+freely edit and adjust your draft as you will...
+
+### publish "[name of post]"
+
+Moves the draft you have named `[name of post]` (located in the `_drafts`
+directory, and having all of the non-alphanumeric characters replaced with
+underscores for the name (it turns
+`Something~something-something.something` into
+`something-something-something-something`, but it knows that the file has a
+different name, it's moderatly smart)) to the current date/time location,
+as if you used the `new` command with "[name of post]" instead, but it
+already has content.
 
 ### new "[name of post]"
 
