@@ -33,6 +33,6 @@ def update():
 
 	os.chdir("git")
 	call(["git", "add", "."])
-	call(["git", "commit", "-m", "'update script'"])
+	call(["git", "commit", "-m", "update script"])
 	call(["git", "push"])
 
