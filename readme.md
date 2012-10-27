@@ -127,4 +127,6 @@ to your source files and see what happens.
 
 To kill the server, just kill the process.
 
-If you want to see exactly what it does, you can check out `server.py`.
+If you want to see exactly what it does, you can check out `server.py`. Or, if
+you don't use an scss file to control your styles, you can comment out line
+65.
