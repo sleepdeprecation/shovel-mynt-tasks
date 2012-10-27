@@ -38,7 +38,7 @@ def draft(title):
 
     filecont =  "---\ntitle: \"" + title + "\""
     filecont += "\nlayout: post.html"
-    filecont += "\ntags: ['']\n---\n\n"
+    filecont += "\ntags: []\n---\n\n"
 
     writer = open(filename, "w")
     writer.write(filecont)

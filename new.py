@@ -37,7 +37,7 @@ def new(title):
 
 	filecont =  "---\ntitle: \"" + title + "\""
 	filecont += "\nlayout: " + layout
-	filecont += "\ntags: ['']\n---\n\n"
+	filecont += "\ntags: []\n---\n\n"
 
 	writer = open(filename, "w")
 	writer.write(filecont)
