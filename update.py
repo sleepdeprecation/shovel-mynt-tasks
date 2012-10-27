@@ -14,6 +14,7 @@ def update():
 
 	# compile less
 	#compile("style.less", path="./source/_assets/css")
+	#call(["lessc", "source/_assets/css/style.less", ">", "source/_assets/css/style.css"])
 
 	# add source git...
 	os.chdir("source")

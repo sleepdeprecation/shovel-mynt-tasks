@@ -12,7 +12,6 @@ def new(title):
 		---
 		title: "title of post"
 		layout: post.html
-		singlecol: false
 		tags: ['']
 		---
 

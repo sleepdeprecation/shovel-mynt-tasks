@@ -16,6 +16,7 @@ def publish(title):
     '''
 
     import datetime, os, re, shutil
+    from subprocess import call
 
     draft = "source/_drafts/" + re.sub(r'\W+', '-', title.lower()) + ".md"
 
@@ -32,6 +33,8 @@ def publish(title):
         print(pubd + " : " + pub)
 
         shutil.move(draft, pub)
+        os.chdir("source")
+        call(["git", "mv", draft, pub])
 
         #if shutil.move(draft, pub): print("moved") else: print("issue moving")
     else:

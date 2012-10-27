@@ -12,7 +12,6 @@ def draft(title):
         ---
         title: "title of draft"
         layout: post.html
-        singlecol: false
         tags: ['']
         ---
     '''
