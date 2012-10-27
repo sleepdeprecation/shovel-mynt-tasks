@@ -39,12 +39,23 @@ class MyntWatcher (threading.Thread):
 def server():
   '''
     Run a simple server on port 8000, watching the scss and source
-  '''
 
-  '''
-  SASScompile().start()
-  MyntWatcher().start()
-  PythonServer().start()
+    Yes, it's that simple.
+
+    This is mostly for local development purposes. If you use the same
+    setup that I use (and, considering that I've written these mostly
+    for myself, because it makes life easier for me, but I thought that
+    others might like them too), it watches and compiles the scss file,
+    watches the source, and serves up the generated files, using the
+    base_url of `http://127.0.0.1:8000/` (which is where it's served to).
+
+    It suddenly turns three terminal windows into one.
+
+    Also, all messages are output provided you don't bring it to
+    the background.
+
+    Ctrl-c does work. It took some time to get that working, but the
+    SimpleHTTPServer now shutsdown, which is good.
   '''
 
   threads = []

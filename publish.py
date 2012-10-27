@@ -5,6 +5,8 @@ def publish(title):
     '''
     Publish a draft.
 
+    Call: `shovel publish "title of draft"`
+
     Looks to see if `./source/_drafts/[title-of-draft].md` is a file,
     and if it is, it will move it to the ready-to-publish location of
     `./source/_posts/[yyyy]/[mm]/[dd]/[yyyy]-[mm]-[dd]-[hh]-[mm]-[title-of-draft].md`

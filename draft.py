@@ -14,6 +14,18 @@ def draft(title):
         layout: post.html
         tags: ['']
         ---
+
+    The difference between draft and new is that new creates an
+    immediately visible blog post, where draft creates a draft,
+    inside of the _drafts directory, which isn't payed attention
+    to while mynt generates the site.
+
+    If you're finished with a draft, you'll need to call
+    `publish "title of draft"`, which will make the draft an
+    actual post, and will move it to the
+    `./source/_posts/[yyyy]/[mm]/[dd]/` directory, and give it
+    a timestamp before the name, which is what you want (and is
+    similar to what calling new does).
     '''
 
     import os, re
@@ -26,7 +38,6 @@ def draft(title):
 
     filecont =  "---\ntitle: \"" + title + "\""
     filecont += "\nlayout: post.html"
-    filecont += "\nsinglecol: false"
     filecont += "\ntags: ['']\n---\n\n"
 
     writer = open(filename, "w")

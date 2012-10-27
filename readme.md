@@ -1,20 +1,30 @@
 # mynt shovel tasks
 
+**IMPORTANT**: Most of the information hasn't been updated in a
+while, and probably won't be. The most accurate information can
+be found in the task files themselves, or by calling `shovel help`
+or `shovel help [task]` for specific information.
+
+Also, some of these tasks may no longer exist. Don't rely on this
+for documenation...
+
 This is a collection of mynt shovel tasks used modify and update
-[http://dkuntz2.com](http://dkuntz2.com). Some of which are based off of
-another one of my projects,
-[By The Bay](https://github.com/dkuntz2/bythebay).
+[http://dkuntz2.com](http://dkuntz2.com).
 
 ## Requrements
 
 - [Shovel](https://github.com/seomoz/shovel)
 - [mynt](https://github.com/Anomareh/mynt)
+- SASS, installed by gem (or something called `sass` in your path that 
+  has the same switches and such as the sass gem)
+
 
 ## Installation
 
 Really, it's quite simple. 
 
-Pretty much follow the following guide, it'll get you the basis of a mynt project located at `~/mynt`
+Pretty much follow the following guide, it'll get you the basis of a 
+mynt project located at `~/mynt`
 
 	mkdir mynt
 	cd mynt
