@@ -30,11 +30,13 @@ def update(message="update script"):
 	call(["mynt", "gen", "-f", "source", "generated"])
 
 	# add gen git
+	'''
 	cp = subprocess.Popen("cp generated/* git/ -r", shell=True)
 	result, err = cp.communicate()
 	print "copying error" if err else "copying fine"
+	'''
 
-	os.chdir("git")
+	os.chdir("generated")
 	call(["git", "add", "."])
 	call(["git", "commit", "-m", message])
 	call(["git", "push"])
