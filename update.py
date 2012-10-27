@@ -5,7 +5,7 @@ from subprocess import call
 import os, glob, subprocess
 
 @task
-def update():
+def update(message="update script"):
 	'''
 		Update the site, including pushing a git repo to wherever...
 		
@@ -19,7 +19,7 @@ def update():
 	# add source git...
 	os.chdir("source")
 	call(["git", "add", "."])
-	call(["git", "commit", "-m", "'update script'"])
+	call(["git", "commit", "-m", message])
 	call(["git", "push"])
 
 	# generate
@@ -33,6 +33,6 @@ def update():
 
 	os.chdir("git")
 	call(["git", "add", "."])
-	call(["git", "commit", "-m", "update script"])
+	call(["git", "commit", "-m", message])
 	call(["git", "push"])
 
