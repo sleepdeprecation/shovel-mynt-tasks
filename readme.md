@@ -7,9 +7,12 @@ your local setup is similar to mine).
 **Contents**
 
 - [Background Information](#background-information)
+- [Installation](#installation)
+  - [Installing From Scratch](#installing-from-scratch)
+  - [Installing With An Existing Site](#installing-with-an-existing-site)
 - [What do these tasks do?](#what-do-these-tasks-do)
 - [Workflow](#workflow)
-- [Workflow Alterations](#alterations)
+  - [Workflow Alterations](#alterations)
 - [Local Development](#local-development)
 
 
@@ -25,6 +28,80 @@ providing users with an easy to implement theme and a collection of nice
 plugins, gives them a set of rake tasks.
 
 I created these tasks to make managing my site easier.
+
+
+## Installation
+
+These tasks require mynt and shovel be installed beforehand.
+
+- [mynt](https://github.com/Anomareh/mynt)
+- [shovel](https://github.com/seomoz/shovel)
+
+It's suggested that you have the SASS rubygem installed, but not necessary. If
+you don't have it installed, you can just comment out that section in the
+`server.py` file.
+
+
+### Installing From Scratch
+
+This will give you a generic mynt site that's ready to use these tasks.
+
+You're going to first need a directory to hold three other directories: 
+a `source` directory, for your source files; a `generated` directory, for
+your generated files; and a `shovel` directory, for this repository (all of
+your shovel-based tasks for the site).
+
+In this case, the site's going to be stored in `~/mynt`, but you can pick 
+whatever directory you want instead.
+
+```
+# create the root project directory, in this case ~/mynt
+$ mkdir ~/mynt
+
+# move into that directory
+$ mv ~/mynt
+
+# initialize a basic mynt site in the directory ./source
+$ mynt init source
+
+# create the generated directory, where all generated files will go
+$ mkdir generated
+
+# clone this repository into ./shovel for use with shovel
+$ git clone https://github.com/dkuntz2/mynt-tasks.git shovel
+
+# add a git repository to the source directory
+$ cd source && git init
+
+# add a git repository to the generated directory
+$ cd ../generated && git init
+
+# go back to the project's root and start using the tasks
+$ cd ../
+```
+
+## Installing With An Existing Site
+
+If you already have a mynt site running, it's suggested you use a similar
+setup to the one above (explained better below), or modify the tasks to fit
+your needs.
+
+The prefered directory setup is 
+
+```
+./[site name]
+ - /source      # where your source files live
+ - /generated   # where the source gets generated to
+ - /shovel      # this repository
+```
+
+To install these tasks to your main project directory, just run
+
+```
+$ git clone https://github.com/dkuntz2/mynt-tasks.git shovel
+```
+
+You should now be able to use the tasks if you use the above directory setup.
 
 
 ## What do these tasks do?
@@ -96,6 +173,7 @@ My typical workflow goes something like this:
 
     It will also call `git push` on the two git repositories.
 
+
 ### Alterations
 
 If you have a new blog entry you want to immediately post, you can call
@@ -105,6 +183,7 @@ If you have a new blog entry you want to immediately post, you can call
 Which will skip having the initial file in the `./source/_drafts` directory
 and place it in the corresponding `./source/_posts` year-month-day directory,
 with the timestamped filename.
+
 
 ## Local Development
 
