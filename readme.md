@@ -50,7 +50,9 @@ My typical workflow goes something like this:
 
     Creating a draft is fairly easy, just call
 
-      shovel draft "Name of your draft"
+    ```
+    shovel draft "Name of your draft"
+    ```
 
     Doing that will create a new file in `./source/_drafts` with 
     "name-of-your-draft.md" as the filename (in lowercase, with all 
@@ -59,7 +61,9 @@ My typical workflow goes something like this:
 2.  After finishing the draft, it's time to publish it, which can be done by
     calling
 
-      shovel publish "Name of your draft"
+    ```
+    shovel publish "Name of your draft"
+    ```
 
     Where "Name of your draft" is the same thing you used when calling draft.
 
@@ -75,12 +79,14 @@ My typical workflow goes something like this:
 3.  Now that the source files have been modified, and there's an update to be
     made to the site, the site can be updated by calling
 
-      shovel update
+    ```
+    shovel update
+    ```
 
     Or, if you want a commit message other than `update script`, 
 
     ```
-      shovel update "commit message"
+    shovel update "commit message"
     ```
 
     This will update the git repository in the `./source` directory, generate
@@ -103,8 +109,9 @@ with the timestamped filename.
 ## Local Development
 
 If you want to locally develop your mynt site, you can call
-
-  shovel server
+```
+shovel server
+```
 
 The server task does three things:
 
