@@ -80,6 +80,13 @@ $ cd ../generated && git init
 $ cd ../
 ```
 
+If you're like me, and like having your site updated with git, 
+Abhijit Menon-Sen has a 
+[great guide on managing your site with git](http://toroid.org/ams/git-website-howto),
+which is what I use to keep my site up to date. These instructions should be 
+followed for the `./generated` directory.
+
+
 ## Installing With An Existing Site
 
 If you already have a mynt site running, it's suggested you use a similar
