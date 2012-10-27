@@ -1,115 +1,130 @@
 # mynt shovel tasks
 
-**IMPORTANT**: Most of the information hasn't been updated in a
-while, and probably won't be. The most accurate information can
-be found in the task files themselves, or by calling `shovel help`
-or `shovel help [task]` for specific information.
+This is a collection of [shovel](https://github.com/seomoz/shovel) tasks for
+working with a [mynt](https://github.com/Anomareh/mynt) website (provided
+your local setup is similar to mine).
 
-Also, some of these tasks may no longer exist. Don't rely on this
-for documenation...
+**Contents**
 
-This is a collection of mynt shovel tasks used modify and update
-[http://dkuntz2.com](http://dkuntz2.com).
-
-## Requrements
-
-- [Shovel](https://github.com/seomoz/shovel)
-- [mynt](https://github.com/Anomareh/mynt)
-- SASS, installed by gem (or something called `sass` in your path that 
-  has the same switches and such as the sass gem)
+- [Background Information](#background-information)
+- [What do these tasks do?](#what-do-these-tasks-do)
+- [Workflow](#workflow)
+- [Workflow Alterations](#alterations)
+- [Local Development](#local-development)
 
 
-## Installation
+## Background Information
 
-Really, it's quite simple. 
+My [website](http://dkuntz2.com) runs on mynt, because I really like it for a
+variety of reasons. That said, because mynt is a static-site generator, there
+isn't really anything to easily manage basic tasks built in (this is the same
+for jekyll and most likely other static-site generators).
 
-Pretty much follow the following guide, it'll get you the basis of a 
-mynt project located at `~/mynt`
+In jekyll's case, Brandon Mathis created Octopress, which, along with
+providing users with an easy to implement theme and a collection of nice
+plugins, gives them a set of rake tasks.
 
-	mkdir mynt
-	cd mynt
-	git clone git://github.com/dkuntz2/mynt-tasks.git shovel
-	shovel create
-	shovel new "Hello World!"
-	shovel generate
+I created these tasks to make managing my site easier.
 
-The output of `ls -p ~/mynt` should be:
 
-	generated/  shovel/  source/
+## What do these tasks do?
 
-Huzzah! You've got most of a mynt project ready to go...
+There are three basic things these tasks do
 
-## Git integration
+1.  Help you create new blog drafts and posts. Which is the most basic thing
+    you want to be able to do with your website.
 
-Because I've been writing these for myself, and I like to keep my site
-updated with git (it's so much nicer than using FTP, you have no idea if
-you haven't done so before, really, just try it out), there is some built
-in git functionality.
+2.  Update your site, by generating the site and pushing git repositories 
+    (again, these tasks presume you have a setup akin to mine, there are
+    setup instructions below).
 
-That said, you have to manually mess with the directories to get started
-with the git tasks.
+3.  Locally develop your site.
 
-Basically, just head into `./source`, run `git init`, add a remote (`git
-remote add [url to remote repository] origin`.
 
-After you've got the source directory setup you'll need to create the git
-directory (as of when this is written, mynt deletes the genereated
-directory on each call of `mynt gen`, which means you'll need a third
-directory). It's pretty much `mkidr git`, followed by running the same
-commands for the source setup.
+## Workflow
 
-When that's done, you can start using the git tasks.
+My typical workflow goes something like this:
 
-## Usage and list of normal tasks
+1.  Create a new draft for a post, generally because I either have a full post
+    that I want to write, or because I have an idea and I want to work on it.
 
-If you're not sure what a shovel task does, you can run `shovel help [task name]` for a specific task, or `shovel help` for all tasks.
+    Creating a draft is fairly easy, just call
 
-### create
+      shovel draft "Name of your draft"
 
-Build your basic mynt site. Runs `init` for your too.
+    Doing that will create a new file in `./source/_drafts` with 
+    "name-of-your-draft.md" as the filename (in lowercase, with all 
+    non-alphanumeric characters converted into dashes).
 
-### init
+2.  After finishing the draft, it's time to publish it, which can be done by
+    calling
 
-Prompts you for the basic information about your site and places them inside your `./source/config.yml` file.
+      shovel publish "Name of your draft"
 
-Does some *basic* processing on the `domain` and `base_url` variables.
+    Where "Name of your draft" is the same thing you used when calling draft.
 
-### draft "[name of post]"
+    This will move the file from your drafts directory to 
+    `./source/_posts/[yyyy]/[mm]/[dd]/[yyyy]-[mm]-[dd]-[hh]-[mm]-[previous file name].md`, 
+    which is what you want for it to become visible on the blog.
 
-Create a new draft with the name [name of post].
+    Because `publish` uses the same system for converting the title string
+    into a filename, you can use all lowercase characters, and convert all
+    non-alphanumeric characters into other non-alphanumeric characters. It's
+    suggested that you just use the same string as when you called draft.
 
-The draft will be located in `./source/_draft/[name of post].md`. You can
-freely edit and adjust your draft as you will...
+3.  Now that the source files have been modified, and there's an update to be
+    made to the site, the site can be updated by calling
 
-### publish "[name of post]"
+      shovel update
 
-Moves the draft you have named `[name of post]` (located in the `_drafts`
-directory, and having all of the non-alphanumeric characters replaced with
-underscores for the name (it turns
-`Something~something-something.something` into
-`something-something-something-something`, but it knows that the file has a
-different name, it's moderatly smart)) to the current date/time location,
-as if you used the `new` command with "[name of post]" instead, but it
-already has content.
+    Or, if you want a commit message other than `update script`, 
 
-### new "[name of post]"
+      shovel update "commit message"
 
-Create a new post with the name [name of post].
+    This will update the git repository in the `./source` directory, generate
+    the mynt site (by calling `mynt gen -f source generated`), copy everything
+    in the `./generated` directory into the `./git` directory, and update the
+    git repository in the `./git` directory.
 
-Post will be located in `./source/_posts/[yyyy]/[mm]/[dd]/[yyyy]-[mm]-[dd]-[hh]-[min]-[name of post, replacing all special characters with _].md`
+    It will also call `git push` on the two git repositories.
 
-### generate
+### Alterations
 
-Generates your mynt site using `./source` as the source and `./generated` as the output.i
+If you have a new blog entry you want to immediately post, you can call
 
-## Git tasks
+  shovel new "name of post"
 
-### pull
+Which will skip having the initial file in the `./source/_drafts` directory
+and place it in the corresponding `./source/_posts` year-month-day directory,
+with the timestamped filename.
 
-Update the `source` and `git` git repositories from the server (just runs
-`git pull` on the two directories)
+## Local Development
 
-### update
+If you want to locally develop your mynt site, you can call
 
-Runs generate, copies the stuff in `generated/` to `git/` and pushes
-`source/` and `git/` to their remote repos.
+  shovel server
+
+The server task does three things:
+
+1.  It watches the scss file
+    `./source/_assets/css/style.scss` and compiles it into 
+    `./source/_assets/css/style.css`
+
+2.  It watches your `./source` directory for changes and automatically
+    generates them into the `./generated` directory, setting `site.base_url`
+    to `http://127.0.0.1:8000/` (which is what the next thing serves it to).
+
+3.  It runs a `SimpleHTTPServer` in the `./generated` directory, serving
+    it to localhost port 8000.
+
+Calling `shovel server` provides you with a local instance of your site, and
+serves it to a different `base_url` than the one set in your site's 
+`config.yml` file (which means you don't have to change that).
+
+After starting the server, you can open your browser to 
+[`http://127.0.0.1:8000/`](http://127.0.0.1:8000). You can than make changes
+to your source files and see what happens.
+
+To kill the server, just kill the process.
+
+If you want to see exactly what it does, you can check out `server.py`.
