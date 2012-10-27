@@ -79,7 +79,9 @@ My typical workflow goes something like this:
 
     Or, if you want a commit message other than `update script`, 
 
+    ```
       shovel update "commit message"
+    ```
 
     This will update the git repository in the `./source` directory, generate
     the mynt site (by calling `mynt gen -f source generated`), copy everything
