@@ -17,7 +17,7 @@ def update(message="update script"):
 	'''
 
 	# pull, to make sure that everything is hunky-dory
-	call(["shovel", "pull"])
+	#call(["shovel", "pull"])
 
 	# add source git...
 	os.chdir("source")
