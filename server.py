@@ -11,7 +11,7 @@ class SASScompile (threading.Thread):
     call([
       "sass", 
       "--watch", 
-      "source/_assets/css/style.scss:source/_assets/css/style.css"
+      "source/_assets/_scss:source/_assets/css"
     ])
 
 class PythonServer (threading.Thread):
@@ -58,25 +58,23 @@ def server():
     SimpleHTTPServer now shutsdown, which is good.
   '''
 
-  threads = []
+  try:
+    threads = []
 
-  sass = SASScompile()
-  threads.append(sass)
-  sass.start()
+    sass = SASScompile()
+    threads.append(sass)
+    sass.start()
 
-  myntwatch = MyntWatcher()
-  threads.append(myntwatch)
-  myntwatch.start()
+    myntwatch = MyntWatcher()
+    threads.append(myntwatch)
+    myntwatch.start()
 
-  serv = PythonServer()
-  threads.append(serv)
-  serv.start();
+    serv = PythonServer()
+    threads.append(serv)
+    serv.start();
 
-  while len(threads) > 0:
-    try:
-      threads = [t.join(1) for t in threads if t is not None and t.isAlive()]
-    except KeyboardInterrupt:
-      print "Ctrl-c received! killing threads..."
-      for t in threads:
-        t.kill_received = True
-      serv.shutdown()
+  except KeyboardInterrupt:
+    print "Ctrl-c received! killing threads..."
+    for t in threads:
+      t.kill_received = True
+    serv.shutdown()
