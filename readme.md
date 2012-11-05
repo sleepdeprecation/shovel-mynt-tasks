@@ -202,8 +202,8 @@ shovel server
 The server task does three things:
 
 1.  It watches the scss file
-    `./source/_assets/css/style.scss` and compiles it into 
-    `./source/_assets/css/style.css`
+    `./source/_assets/_scss` and compiles it into 
+    `./source/_assets/css/`, using the SASS gem.
 
 2.  It watches your `./source` directory for changes and automatically
     generates them into the `./generated` directory, setting `site.base_url`
