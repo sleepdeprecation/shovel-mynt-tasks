@@ -28,6 +28,11 @@ def update(message="update script"):
 	# generate
 	os.chdir("../")
 	call(["mynt", "gen", "-f", "source", "generated"])
+	call([
+      	"sass", 
+      	"--update", 
+      	"source/_assets/_scss:source/_assets/css"
+    	])
 
 	# add gen git
 	'''
