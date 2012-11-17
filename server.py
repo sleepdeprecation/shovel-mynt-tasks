@@ -72,8 +72,11 @@ def server():
     serv = PythonServer()
     threads.append(serv)
     serv.start();
+  
+    while True:
+      pass
 
-  except KeyboardInterrupt:
+  except KeyboardInterrupt, SystemExit:
     print "Ctrl-c received! killing threads..."
     for t in threads:
       t.kill_received = True
