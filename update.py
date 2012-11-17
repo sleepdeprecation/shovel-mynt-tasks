@@ -2,10 +2,10 @@ from shovel import task
 from subprocess import call
 #from lessc import compile
 
-import os, glob, subprocess
+import os, glob, subprocess, datetime
 
 @task
-def update(message="update script"):
+def update(message="auto update"):
 	'''
 		Update the site, including pushing a git repo to wherever...
 		
@@ -15,6 +15,10 @@ def update(message="update script"):
 		`shovel update "message"`, that'll be the commit message.
 		If you don't include a message, it'll just be "update script"
 	'''
+
+	now = datetime.datetime.now();
+	message = "[Shovel Update " + now.strftime("%Y/%m/%d %H:%M") + "] " + message
+
 
 	# pull, to make sure that everything is hunky-dory
 	#call(["shovel", "pull"])
