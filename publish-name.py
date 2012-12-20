@@ -5,19 +5,22 @@ def publish(title):
     '''
     Publish a draft.
 
-    Call: `shovel publish filename`
+    Call: `shovel publish "title of draft"`
 
-    Takes the file "filename" (which *should* be in the _drafts directory) and
-    live-ifies it...
+    Looks to see if `./source/_drafts/[title-of-draft].md` is a file,
+    and if it is, it will move it to the ready-to-publish location of
+    `./source/_posts/[yyyy]/[mm]/[dd]/[yyyy]-[mm]-[dd]-[hh]-[mm]-[title-of-draft].md`
+    because that's where it's supposed to go.
 
-    This is so I can just tab-complete the filename instead of remembering what
-    it's called.
+    Pretty much, it just makes a draft ready to print. It can't tell you
+    if the draft is fit to print, that's something you have to determine
+    on your own.
     '''
 
     import datetime, os, re, shutil
     from subprocess import call
 
-    draft = title
+    draft = "source/_drafts/" + re.sub(r'\W+', '-', title.lower()) + ".md"
 
     if os.path.isfile(draft):
         now = datetime.datetime.now()
@@ -27,7 +30,7 @@ def publish(title):
             os.makedirs(pubd)
 
         pub = pubd + now.strftime("%Y-%m-%d-%H-%M-")
-        pub += title[15:]
+        pub += re.sub(r'\W+', '-', title.lower()) + ".md"
 
         print(pubd + " : " + pub)
 

@@ -13,5 +13,5 @@ def pull():
 	
 	os.chdir("source")
 	call(["git", "pull"])
-	os.chdir("../git")
-	call(["generated", "pull"])
+	os.chdir("../generated")
+	call(["git", "pull"])

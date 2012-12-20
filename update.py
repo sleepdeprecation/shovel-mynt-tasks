@@ -16,6 +16,9 @@ def update(message="auto update"):
 		If you don't include a message, it'll just be "update script"
 	'''
 
+	call(["shovel", "pull"]) # what, I want things pulled before I try messing
+													 # with it...
+
 	now = datetime.datetime.now();
 	message = "[Shovel Update " + now.strftime("%Y/%m/%d %H:%M") + "] " + message
 
