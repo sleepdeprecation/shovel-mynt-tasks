@@ -20,7 +20,7 @@ def update(message="auto update"):
 													 # with it...
 
 	now = datetime.datetime.now();
-	message = "[Shovel Update " + now.strftime("%Y/%m/%d %H:%M") + "] " + message
+	message = "[Update " + now.strftime("%d %B %Y %H:%M") + "] " + message
 
 
 	# pull, to make sure that everything is hunky-dory
