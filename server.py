@@ -32,12 +32,8 @@ class MyntWatcher (threading.Thread):
     threading.Thread.__init__(self)
 
   def run(self):
-    call(["mynt", "gen", "--base-url=http://127.0.0.1:8000/", "-f", "source", "generated"])
-    
-    # okay, now watch it...
-    call(["mynt", "-v", "watch", "--base-url=http://127.0.0.1:8000/", "-f", "source", "generated"])
-    
-
+    call(["mynt", "watch", "-f", "--base-url=http://127.0.0.1:8000/", "source/", "generated"])
+    #print "mynt watch -f --base-url=http://12"
 
 @task
 def server():
@@ -62,28 +58,26 @@ def server():
     SimpleHTTPServer now shutsdown, which is good.
   '''
 
-  threads = []
-
-  sass = SASScompile()
-  threads.append(sass)
-  sass.start()
-
-  myntwatch = MyntWatcher()
-  threads.append(myntwatch)
-  myntwatch.start()
-
-  serv = PythonServer()
-  threads.append(serv)
-  serv.start();
-
   try:
+    threads = []
+
+    sass = SASScompile()
+    threads.append(sass)
+    sass.start()
+
+    myntwatch = MyntWatcher()
+    threads.append(myntwatch)
+    myntwatch.start()
+
+    serv = PythonServer()
+    threads.append(serv)
+    serv.start();
+  
     while True:
       pass
 
   except KeyboardInterrupt, SystemExit:
-    print "\nCtrl-c received! killing threads..."
-    serv.shutdown()
-    print "server killed"
+    print "Ctrl-c received! killing threads..."
     for t in threads:
-      #t.interrupt_main()
       t.kill_received = True
+    serv.shutdown()
